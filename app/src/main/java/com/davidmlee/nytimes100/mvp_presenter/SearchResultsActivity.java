@@ -62,6 +62,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        Log.v(TAG, "onNewIntent in");
         handleIntent(intent);
     }
 

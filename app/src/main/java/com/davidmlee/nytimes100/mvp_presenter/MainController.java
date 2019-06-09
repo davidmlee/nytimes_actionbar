@@ -142,15 +142,19 @@ public class MainController {
                         try {
                             jsonTop = new JSONObject(responseBodyString);
                             MainController.searchResult.setLastFetchedPageNum(searchResult.getLastFetchedPageNum() + 1);
-                            results = jsonTop.getJSONArray("results");
-                            int numEntries = results.length();
-                            ListSummaryEntity fe;
-                            for (int i = 0; i < numEntries; i++) {
-                                fe = ListSummaryEntity.populateFetchableResource(results.getJSONObject(i));
-                                MainController.articleAry.add(fe);
-                            } // for
-                            if (weakReferenceMainActivity.get() != null) {
-                                ((SearchResultsActivity)weakReferenceMainActivity.get()).appendToMovieList();
+                            if (jsonTop.has("results")) {
+                                results = jsonTop.optJSONArray("results");
+                                if (results != null && results.length() > 0) {
+                                    int numEntries = results.length();
+                                    ListSummaryEntity fe;
+                                    for (int i = 0; i < numEntries; i++) {
+                                        fe = ListSummaryEntity.populateFetchableResource(results.getJSONObject(i));
+                                        MainController.articleAry.add(fe);
+                                    } // for
+                                    if (weakReferenceMainActivity.get() != null) {
+                                        ((SearchResultsActivity) weakReferenceMainActivity.get()).appendToMovieList();
+                                    }
+                                }
                             }
                         } catch (Exception ex) {
                             ex.printStackTrace();
