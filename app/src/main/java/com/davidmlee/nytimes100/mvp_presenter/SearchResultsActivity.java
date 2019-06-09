@@ -1,7 +1,8 @@
-package com.davidmlee.nytimes100;
+package com.davidmlee.nytimes100.mvp_presenter;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -9,24 +10,25 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-public class MainActivity extends AppCompatActivity {
+import com.davidmlee.nytimes100.R;
+
+public class SearchResultsActivity extends AppCompatActivity {
     private static String TAG;
     private static int objectcount = 0;
+    int iDebug = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TAG = "MainActivity-" + objectcount++;
+        TAG = "SearchResultsActivity-" + objectcount++;
         Log.v(TAG, "onCreate in");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_result);
+        handleIntent(getIntent());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.v(TAG, "onCreateOptionsMenu in");
         MenuInflater inflater = getMenuInflater();
-        // Inflate menu to add items to action bar if it is present.
         inflater.inflate(R.menu.menu_main, menu);
-        // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
@@ -35,6 +37,20 @@ public class MainActivity extends AppCompatActivity {
                 searchManager.getSearchableInfo(getComponentName()));
 
         return true;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            iDebug = 2;
+            //use the query to search
+            Log.v(TAG, query);
+        }
     }
 
     @Override
