@@ -5,11 +5,26 @@
     <string name="search_result">Search Result!</string>
     <string name="action_settings">Settings</string>
     <string name="search_hint">Type and Search</string>
-    <string name="menu_search">Search</string>
+    <string name="label_search_text_empty">Search text is empty</string>
+
+    <string name="label_search_text">Enter search text here</string>
+    <string name="label_submit">Search</string>
+    <string name="label_list_reset">New search list on display</string>
+    <string name="label_article_not_found">No article found</string>
+    <string name="label_list_appended">More results were fetched from server</string>
+    <string name="label_list_bottom_reached">List bottom reached</string>
 
     <string name="label_welcome">Welcome to Android NY Times Search by dml</string>
     <string name="label_usage">Start by entering a search term in the top bar.\n\n
 You may force an an exact match of phrase by quoting your phrase.  Use this to refine results for ambiguous searches, or to exclude synonyms when searching for single words.\n\n
 Example: “steve jobs”
     </string>
+    <string name="label_title">Title</string>
+    <string name="label_overview">Overview</string>
+    <string name="label_share">Share</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="label_done">Done</string>
+    <string name="label_version">Version</string>
+    <string name="menu_search">Search</string>
 </resources>

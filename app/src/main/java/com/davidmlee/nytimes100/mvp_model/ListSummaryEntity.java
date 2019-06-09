@@ -1,15 +1,9 @@
 package com.davidmlee.nytimes100.mvp_model;
 
-//import android.icu.text.SimpleDateFormat;
-import android.icu.text.SimpleDateFormat;
-import android.text.format.DateFormat;
-
-import com.davidmlee.kata.nysearch100.util.Util;
+import com.davidmlee.nytimes100.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.Locale;
 
 /**
  * ListSummaryEntity

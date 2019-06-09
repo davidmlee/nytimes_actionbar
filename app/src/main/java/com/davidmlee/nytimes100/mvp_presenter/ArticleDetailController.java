@@ -2,8 +2,9 @@ package com.davidmlee.nytimes100.mvp_presenter;
 
 import android.content.Intent;
 
-import com.davidmlee.kata.nysearch100.models.ListSummaryEntity;
-import com.davidmlee.kata.nysearch100.view.ArticleDetailActivity;
+import com.davidmlee.nytimes100.mvp_model.ListSummaryEntity;
+import com.davidmlee.nytimes100.mvp_presenter.ArticleDetailActivity;
+import com.davidmlee.nytimes100.util.SearchArticles;
 
 import java.util.ArrayList;
 

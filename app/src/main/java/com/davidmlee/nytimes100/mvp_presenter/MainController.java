@@ -2,19 +2,19 @@ package com.davidmlee.nytimes100.mvp_presenter;
 
 import android.app.Activity;
 import android.provider.SyncStateContract;
+import android.util.Log;
 import android.widget.Toast;
 
-import com.davidmlee.kata.nysearch100.R;
-import com.davidmlee.kata.nysearch100.models.SearchResult;
-import com.davidmlee.kata.nysearch100.view.MainActivity;
-import com.davidmlee.kata.nysearch100.core.MyApp;
-import com.davidmlee.kata.nysearch100.core.ScreenMap;
-import com.davidmlee.kata.nysearch100.models.ListSummaryEntity;
-import com.davidmlee.kata.nysearch100.query.QueryResponseCallback;
-import com.davidmlee.kata.nysearch100.query.SearchArticles;
-import static com.davidmlee.kata.nysearch100.core.Contants.BASE_URL;
+import com.davidmlee.nytimes100.R;
+import com.davidmlee.nytimes100.mvp_model.SearchResult;
+import com.davidmlee.nytimes100.mvp_presenter.MainActivity;
+import com.davidmlee.nytimes100.mvp_presenter.MyApp;
+import com.davidmlee.nytimes100.mvp_presenter.ScreenMap;
+import com.davidmlee.nytimes100.mvp_model.ListSummaryEntity;
+import com.davidmlee.nytimes100.mvp_presenter.QueryResponseCallback;
+import com.davidmlee.nytimes100.util.SearchArticles;
 
-import static com.davidmlee.kata.nysearch100.core.Contants.NUM_ARTICLES_PER_PAGE;
+import static com.davidmlee.nytimes100.mvp_model.Contants.NUM_ARTICLES_PER_PAGE;
 
 import okhttp3.Response;
 
@@ -29,6 +29,7 @@ import java.util.ArrayList;
  *
  */
 public class MainController {
+    private final static String TAG = "MainController";
     private static WeakReference<Activity> weakReferenceMainActivity = null;
     static private SearchResult searchResult = new SearchResult();
     static private ArrayList<ListSummaryEntity> articleAry = new ArrayList<>(); // List for list adapter
@@ -66,6 +67,7 @@ public class MainController {
             @Override
             public void run() {
                 super.run();
+                Log.v(TAG, "sendSearchByPage in");
                 SearchArticles.sendSearchByPage(str_search_text, 0, new QueryResponseCallback() {
                     @Override
                     public void onSuccess(String responseBodyString) {
@@ -89,7 +91,7 @@ public class MainController {
                                 MainController.searchResult.setTotalArticlesFetched(numEntries);
                                 MainController.searchResult.setTotalPagesFetched(1);
                                 if (weakReferenceMainActivity.get() != null) {
-                                    ((MainActivity) weakReferenceMainActivity.get()).resetMovieList();
+                                    ((SearchResultsActivity) weakReferenceMainActivity.get()).resetMovieList();
                                 }
                             }
                         } catch (Exception ex) {
@@ -106,10 +108,10 @@ public class MainController {
                             errorString = ex.getLocalizedMessage();
                         }
                         if (weakReferenceMainActivity.get() != null && ! MyApp.getIsAppBackground()) {
-                            Activity myMainActivity = ScreenMap.getCurrentResumedActivity();
-                            if (myMainActivity != null &&
-                                    myMainActivity.getLocalClassName().contains(MainActivity.class.getSimpleName())) {
-                                ((MainActivity)weakReferenceMainActivity.get()).displayQueryError(errorString);
+                            Activity activity1 = ScreenMap.getCurrentResumedActivity();
+                            if (activity1 != null &&
+                                    activity1.getLocalClassName().contains(SearchResultsActivity.class.getSimpleName())) {
+                                ((SearchResultsActivity)weakReferenceMainActivity.get()).displayQueryError(errorString);
                             }
                         }
                     }
@@ -122,7 +124,7 @@ public class MainController {
     static public void searchArticlesNextPage() {
         if (searchResult.getLastFetchedPage_NumArticlesInPage() < NUM_ARTICLES_PER_PAGE) {
             if (weakReferenceMainActivity.get() != null) {
-                ((MainActivity)weakReferenceMainActivity.get()).promptUser(MyApp.getStrRes(R.string.label_list_bottom_reached), Toast.LENGTH_SHORT);
+                ((SearchResultsActivity)weakReferenceMainActivity.get()).promptUser(MyApp.getStrRes(R.string.label_list_bottom_reached), Toast.LENGTH_SHORT);
             }
             return;
         }
@@ -148,7 +150,7 @@ public class MainController {
                                 MainController.articleAry.add(fe);
                             } // for
                             if (weakReferenceMainActivity.get() != null) {
-                                ((MainActivity)weakReferenceMainActivity.get()).appendToMovieList();
+                                ((SearchResultsActivity)weakReferenceMainActivity.get()).appendToMovieList();
                             }
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -166,8 +168,8 @@ public class MainController {
                         if (weakReferenceMainActivity.get() != null && ! MyApp.getIsAppBackground()) {
                             Activity myMainActivity = ScreenMap.getCurrentResumedActivity();
                             if (myMainActivity != null &&
-                                    myMainActivity.getLocalClassName().contains(MainActivity.class.getSimpleName())) {
-                                ((MainActivity)weakReferenceMainActivity.get()).displayQueryError(errorString);
+                                    myMainActivity.getLocalClassName().contains(SearchResultsActivity.class.getSimpleName())) {
+                                ((SearchResultsActivity)weakReferenceMainActivity.get()).displayQueryError(errorString);
                             }
                         }
                     }
