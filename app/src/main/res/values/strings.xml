@@ -6,4 +6,10 @@
     <string name="action_settings">Settings</string>
     <string name="search_hint">Type and Search</string>
     <string name="menu_search">Search</string>
+
+    <string name="label_welcome">Welcome to Android NY Times Search by dml</string>
+    <string name="label_usage">Start by entering a search term in the top bar.\n\n
+You may force an an exact match of phrase by quoting your phrase.  Use this to refine results for ambiguous searches, or to exclude synonyms when searching for single words.\n\n
+Example: “steve jobs”
+    </string>
 </resources>
