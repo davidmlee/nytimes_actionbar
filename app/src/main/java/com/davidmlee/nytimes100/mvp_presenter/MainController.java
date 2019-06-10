@@ -67,10 +67,10 @@ public class MainController {
             @Override
             public void run() {
                 super.run();
-                Log.v(TAG, "sendSearchByPage in");
                 SearchArticles.sendSearchByPage(str_search_text, 0, new QueryResponseCallback() {
                     @Override
                     public void onSuccess(String responseBodyString) {
+                        MainController.getArticleList().clear();
                         JSONObject jsonTop;
                         JSONObject response;
                         JSONArray results;
@@ -85,7 +85,7 @@ public class MainController {
                                 ListSummaryEntity fe;
                                 for (int i = 0; i < numEntries; i++) {
                                     fe = ListSummaryEntity.populateFetchableResource(results.getJSONObject(i));
-                                    MainController.articleAry.add(fe);
+                                    MainController.getArticleList().add(fe);
                                 } // for
                                 MainController.searchResult.setLastFetchedPage_NumArticlesInPage(numEntries);
                                 MainController.searchResult.setTotalArticlesFetched(numEntries);
@@ -146,13 +146,13 @@ public class MainController {
                             //MainController.searchResult.setSearchText(str_search_text); // already set on the first search
                             response = jsonTop.getJSONObject("response");
                             if (response != null) {
-                                results = jsonTop.optJSONArray("docs");
+                                results = response.optJSONArray("docs");
                                 if (results != null && results.length() > 0) {
                                     int numEntries = results.length();
                                     ListSummaryEntity fe;
                                     for (int i = 0; i < numEntries; i++) {
                                         fe = ListSummaryEntity.populateFetchableResource(results.getJSONObject(i));
-                                        MainController.articleAry.add(fe);
+                                        MainController.getArticleList().add(fe);
                                     } // for
                                     MainController.searchResult.setLastFetchedPage_NumArticlesInPage(numEntries);
                                     MainController.searchResult.addTotalArticlesFetched(numEntries);
