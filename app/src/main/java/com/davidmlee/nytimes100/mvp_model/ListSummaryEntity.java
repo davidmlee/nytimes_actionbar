@@ -41,7 +41,7 @@ public class ListSummaryEntity {
                 if (mediaEntry != null && mediaEntry.length() > 0) {
                     mediaType = mediaEntry.optString("type");
                     mediaImageUrl = mediaEntry.optString("url");
-                    if (mediaType != null && ! mediaType.equals("") && mediaImageUrl != null && ! mediaImageUrl.equals("")) {
+                    if (! Util.isNullOrEmpty(mediaType) && ! Util.isNullOrEmpty(mediaImageUrl)) {
                         if (mediaType.equalsIgnoreCase("image")) {
                             fe.setPosterPath(mediaImageUrl);
                             break;
