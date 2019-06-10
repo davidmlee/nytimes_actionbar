@@ -7,28 +7,15 @@
     android:layout_height="match_parent"
     tools:context="com.davidmlee.nytimes100.mvp_presenter.ArticleDetailActivity"
     >
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        >
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/white"
-            app:titleTextColor="@android:color/black"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            />
-    </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <android.support.design.widget.FloatingActionButton  xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_share" />
+        android:src="@android:drawable/ic_menu_share"
+        android:layout_gravity="right|bottom"
+        app:borderWidth="0dp"
+        app:rippleColor="#ffffff"/>
 
     <include layout="@layout/content_article_detail" />
 </android.support.design.widget.CoordinatorLayout>

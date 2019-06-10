@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -38,14 +39,7 @@ public class ArticleDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            toolbar.setOverflowIcon(getDrawable(R.drawable.ic_more_vert_black));
-        } else {
-            toolbar.setOverflowIcon(getResources().getDrawable(R.drawable.ic_more_vert_black));
-        }
-        setSupportActionBar(toolbar);
-
+        getSupportActionBar().hide();
         imageView = (ImageView)findViewById(R.id.poster_image);
         Picasso.with(this)
                 .load(BASE_IMAGE_URL + ArticleDetailController.getDetailEntity().getPosterPath())
