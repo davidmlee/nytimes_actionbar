@@ -76,27 +76,27 @@ public class SearchResultsActivity extends AppCompatActivity {
             if (query.length() == 0) {
                 Toast.makeText(SearchResultsActivity.this, R.string.label_search_text_empty, Toast.LENGTH_LONG).show();
             } else {
-                clearMovieList();
+                clearArticleList();
                 MainController.searchArticles(query);
             }
 
         }
     }
 
-    public void clearMovieList() {
+    public void clearArticleList() {
         MainController.getArticleList().clear(); // Clear the data list for a new search
         this.articleListAdapter.notifyDataSetChanged();
         recList.invalidate();
     }
 
-    public void resetMovieList() {
+    public void resetArticleList() {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 articleListAdapter.notifyDataSetChanged();
                 recList.invalidate();
                 Activity currentlyResumed = ScreenMap.getCurrentResumedActivity();
-                if (currentlyResumed != null && currentlyResumed.getLocalClassName().contains(MainActivity.class.getSimpleName())) {
+                if (currentlyResumed != null && currentlyResumed.getLocalClassName().contains(SearchResultsActivity.class.getSimpleName())) {
                     Util.hideSoftKeyboard(currentlyResumed);
                     recList.scrollToPosition(0);
                     String strToDisplay;
@@ -114,14 +114,14 @@ public class SearchResultsActivity extends AppCompatActivity {
         });
     }
 
-    public void appendToMovieList() {
+    public void appendToArticleList() {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 articleListAdapter.notifyDataSetChanged();
                 recList.invalidate();
                 Activity currentlyResumed = ScreenMap.getCurrentResumedActivity();
-                if (currentlyResumed != null && currentlyResumed.getLocalClassName().contains(MainActivity.class.getSimpleName())) {
+                if (currentlyResumed != null && currentlyResumed.getLocalClassName().contains(SearchResultsActivity.class.getSimpleName())) {
                     Util.hideSoftKeyboard(currentlyResumed);
                     Snackbar.make(recList,
                             MyApp.getStrRes(R.string.label_list_appended)
@@ -137,7 +137,7 @@ public class SearchResultsActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Activity currentlyResumed = ScreenMap.getCurrentResumedActivity();
-                if (currentlyResumed != null && currentlyResumed.getLocalClassName().contains(MainActivity.class.getSimpleName())) {
+                if (currentlyResumed != null && currentlyResumed.getLocalClassName().contains(SearchResultsActivity.class.getSimpleName())) {
                     Util.hideSoftKeyboard(currentlyResumed);
                     //Toast.makeText(MainActivity.this, prompt_str, Toast.LENGTH_LONG).show();
                     Snackbar.make(recList,

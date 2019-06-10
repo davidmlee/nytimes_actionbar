@@ -91,7 +91,7 @@ public class MainController {
                                 MainController.searchResult.setTotalArticlesFetched(numEntries);
                                 MainController.searchResult.setTotalPagesFetched(1);
                                 if (weakReferenceMainActivity.get() != null) {
-                                    ((SearchResultsActivity) weakReferenceMainActivity.get()).resetMovieList();
+                                    ((SearchResultsActivity) weakReferenceMainActivity.get()).resetArticleList();
                                 }
                             }
                         } catch (Exception ex) {
@@ -152,7 +152,7 @@ public class MainController {
                                         MainController.articleAry.add(fe);
                                     } // for
                                     if (weakReferenceMainActivity.get() != null) {
-                                        ((SearchResultsActivity) weakReferenceMainActivity.get()).appendToMovieList();
+                                        ((SearchResultsActivity) weakReferenceMainActivity.get()).appendToArticleList();
                                     }
                                 }
                             }
