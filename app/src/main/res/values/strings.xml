@@ -13,6 +13,7 @@
     <string name="label_article_not_found">No article found</string>
     <string name="label_list_appended">More results were fetched from server</string>
     <string name="label_list_bottom_reached">List bottom reached</string>
+    <string name="label_num_max_pages">50 articles max on a search</string>
 
     <string name="label_welcome">Welcome to Android NY Times Search by dml</string>
     <string name="label_usage">Start by entering a search term in the top bar.\n\n
