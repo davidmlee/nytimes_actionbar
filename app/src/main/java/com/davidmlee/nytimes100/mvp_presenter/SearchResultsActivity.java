@@ -71,14 +71,12 @@ public class SearchResultsActivity extends AppCompatActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             Log.v(TAG, "handleIntent query=" + query);
             iDebug = 2;
-            //use the query to search
+            // use the query to search
             Log.v(TAG, query);
-            //final String str_search_text = search_text.getEditableText().toString();
             if (query.length() == 0) {
                 Toast.makeText(SearchResultsActivity.this, R.string.label_search_text_empty, Toast.LENGTH_LONG).show();
             } else {
                 clearMovieList();
-                //search_text.clearFocus();
                 MainController.searchArticles(query);
             }
 
