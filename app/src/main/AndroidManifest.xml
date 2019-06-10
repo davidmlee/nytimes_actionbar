@@ -28,7 +28,9 @@
         <activity
             android:name=".mvp_presenter.SearchResultsActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MyCompatTheme">
+            android:theme="@style/Theme.MyCompatTheme"
+            android:launchMode="singleTop"
+            >
 
             <!-- to identify this activity as "searchable" -->
             <intent-filter>
