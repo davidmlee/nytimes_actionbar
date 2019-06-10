@@ -66,26 +66,30 @@ public class MainController {
                 SearchArticles.sendSearchByPage(str_search_text, 0, new QueryResponseCallback() {
                     @Override
                     public void onSuccess(String responseBodyString) {
-                        MainController.getArticleList().clear();
                         JSONObject jsonTop;
                         JSONObject response;
                         JSONArray results;
                         try {
                             jsonTop = new JSONObject(responseBodyString);
-                            MainController.searchResult.setLastFetchedPageNum(0); // First page fetched
-                            MainController.searchResult.setSearchText(str_search_text);
                             response = jsonTop.getJSONObject("response");
                             if (response != null) {
                                 results = response.getJSONArray("docs");
-                                int numEntries = results.length();
-                                ListSummaryEntity fe;
-                                for (int i = 0; i < numEntries; i++) {
-                                    fe = ListSummaryEntity.populateFetchableResource(results.getJSONObject(i));
-                                    MainController.getArticleList().add(fe);
-                                } // for
-                                MainController.searchResult.setLastFetchedPage_NumArticlesInPage(numEntries);
-                                MainController.searchResult.setTotalArticlesFetched(numEntries);
-                                MainController.searchResult.setTotalPagesFetched(1);
+
+                                synchronized (MainController.getArticleList()) {
+                                    MainController.getArticleList().clear();
+                                    int numEntries = results.length();
+                                    ListSummaryEntity fe;
+                                    for (int i = 0; i < numEntries; i++) {
+                                        fe = ListSummaryEntity.populateFetchableResource(results.getJSONObject(i));
+                                        MainController.getArticleList().add(fe);
+                                    } // for
+                                    MainController.searchResult.setLastFetchedPageNum(0); // First page fetched
+                                    MainController.searchResult.setSearchText(str_search_text);
+                                    MainController.searchResult.setLastFetchedPage_NumArticlesInPage(numEntries);
+                                    MainController.searchResult.setTotalArticlesFetched(numEntries);
+                                    MainController.searchResult.setTotalPagesFetched(1);
+                                }
+
                                 if (weakReferenceMainActivity.get() != null) {
                                     ((SearchResultsActivity) weakReferenceMainActivity.get()).resetArticleList();
                                 }
