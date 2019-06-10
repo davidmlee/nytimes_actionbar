@@ -41,11 +41,11 @@ import static com.davidmlee.nytimes100.mvp_model.Contants.BASE_IMAGE_URL;
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
     private Context myActivityContext;
-    private static List<ListSummaryEntity> articleEntityList;
+    private List<ListSummaryEntity> articleEntityList;
 
-    public ArticleListAdapter(Context activityContext, List<ListSummaryEntity> articleEntityList) {
+    public ArticleListAdapter(Context activityContext, List<ListSummaryEntity> articleEntityList_in) {
         myActivityContext = activityContext;
-        ArticleListAdapter.articleEntityList = articleEntityList;
+        this.articleEntityList = articleEntityList_in;
     }
 
     @Override
