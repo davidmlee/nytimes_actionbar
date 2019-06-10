@@ -24,7 +24,7 @@ public class ListSummaryEntity {
         String headline_main;
         if (headline != null && headline.length() > 0) {
             headline_main = headline.optString("main");
-            if (headline != null) {
+            if (headline_main != null) {
                 fe.setTitle(headline_main);
             }
         }
@@ -41,7 +41,7 @@ public class ListSummaryEntity {
                 if (mediaEntry != null && mediaEntry.length() > 0) {
                     mediaType = mediaEntry.optString("type");
                     mediaImageUrl = mediaEntry.optString("url");
-                    if (mediaType != null && mediaType != "" && mediaImageUrl != null && mediaImageUrl != "") {
+                    if (mediaType != null && ! mediaType.equals("") && mediaImageUrl != null && ! mediaImageUrl.equals("")) {
                         if (mediaType.equalsIgnoreCase("image")) {
                             fe.setPosterPath(mediaImageUrl);
                             break;
