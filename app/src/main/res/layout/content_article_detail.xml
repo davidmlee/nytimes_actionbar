@@ -37,7 +37,7 @@
                 app:layout_constraintWidth_max="300dp"
                 app:layout_constraintHeight_max="300dp"
                 android:adjustViewBounds="true"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="3dp"
                 android:layout_weight="20"
                 android:src="@drawable/poster_not_found"
