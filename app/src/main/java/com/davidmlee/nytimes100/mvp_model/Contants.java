@@ -10,4 +10,5 @@ public class Contants {
     static final public String API_KEY = "OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj";
     static final public String BASE_IMAGE_URL = "https://graphics8.nytimes.com/";
     static final public int NUM_ARTICLES_PER_PAGE = 10;
+    static final public int NUM_MAX_PAGES = 5;
 }

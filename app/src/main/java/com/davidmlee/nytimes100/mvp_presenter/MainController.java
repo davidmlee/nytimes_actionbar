@@ -10,6 +10,7 @@ import com.davidmlee.nytimes100.mvp_model.ListSummaryEntity;
 import com.davidmlee.nytimes100.util.SearchArticles;
 
 import static com.davidmlee.nytimes100.mvp_model.Contants.NUM_ARTICLES_PER_PAGE;
+import static com.davidmlee.nytimes100.mvp_model.Contants.NUM_MAX_PAGES;
 
 import okhttp3.Response;
 
@@ -120,6 +121,12 @@ public class MainController {
         if (searchResult.getLastFetchedPage_NumArticlesInPage() < NUM_ARTICLES_PER_PAGE) {
             if (weakReferenceMainActivity.get() != null) {
                 ((SearchResultsActivity)weakReferenceMainActivity.get()).promptUser(MyApp.getStrRes(R.string.label_list_bottom_reached), Toast.LENGTH_SHORT);
+            }
+            return;
+        }
+        if (searchResult.getLastFetchedPageNum() >= NUM_MAX_PAGES) {
+            if (weakReferenceMainActivity.get() != null) {
+                ((SearchResultsActivity)weakReferenceMainActivity.get()).promptUser(MyApp.getStrRes(R.string.label_num_max_pages), Toast.LENGTH_SHORT);
             }
             return;
         }
