@@ -77,7 +77,7 @@ public class MyApp extends Application {
     }
 
     /**
-     * getStrRes
+     * handleException
      * @param TAG an id for logging
      * @param ex Exception
      * @param throwIfDebug True to throw during DEBUG
