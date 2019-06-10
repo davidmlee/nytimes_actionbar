@@ -138,12 +138,15 @@ public class MainController {
                     @Override
                     public void onSuccess(String responseBodyString) {
                         JSONObject jsonTop;
+                        JSONObject response;
                         JSONArray results;
                         try {
                             jsonTop = new JSONObject(responseBodyString);
                             MainController.searchResult.setLastFetchedPageNum(searchResult.getLastFetchedPageNum() + 1);
-                            if (jsonTop.has("results")) {
-                                results = jsonTop.optJSONArray("results");
+                            //MainController.searchResult.setSearchText(str_search_text); // already set on the first search
+                            response = jsonTop.getJSONObject("response");
+                            if (response != null) {
+                                results = jsonTop.optJSONArray("docs");
                                 if (results != null && results.length() > 0) {
                                     int numEntries = results.length();
                                     ListSummaryEntity fe;
@@ -151,6 +154,9 @@ public class MainController {
                                         fe = ListSummaryEntity.populateFetchableResource(results.getJSONObject(i));
                                         MainController.articleAry.add(fe);
                                     } // for
+                                    MainController.searchResult.setLastFetchedPage_NumArticlesInPage(numEntries);
+                                    MainController.searchResult.addTotalArticlesFetched(numEntries);
+                                    MainController.searchResult.incrementTotalPagesFetched();
                                     if (weakReferenceMainActivity.get() != null) {
                                         ((SearchResultsActivity) weakReferenceMainActivity.get()).appendToArticleList();
                                     }
