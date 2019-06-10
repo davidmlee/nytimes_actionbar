@@ -1,17 +1,12 @@
 package com.davidmlee.nytimes100.mvp_presenter;
 
 import android.app.Activity;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.davidmlee.nytimes100.R;
 import com.davidmlee.nytimes100.mvp_model.SearchResult;
-import com.davidmlee.nytimes100.mvp_presenter.MainActivity;
-import com.davidmlee.nytimes100.mvp_presenter.MyApp;
-import com.davidmlee.nytimes100.mvp_presenter.ScreenMap;
 import com.davidmlee.nytimes100.mvp_model.ListSummaryEntity;
-import com.davidmlee.nytimes100.mvp_presenter.QueryResponseCallback;
 import com.davidmlee.nytimes100.util.SearchArticles;
 
 import static com.davidmlee.nytimes100.mvp_model.Contants.NUM_ARTICLES_PER_PAGE;

@@ -1,8 +1,6 @@
 package com.davidmlee.nytimes100.util;
 
 import com.davidmlee.nytimes100.mvp_model.Contants;
-import com.davidmlee.nytimes100.util.HttpRequest;
-import com.davidmlee.nytimes100.util.HttpResponseCallback;
 import okhttp3.Response;
 
 import static com.davidmlee.nytimes100.mvp_model.Contants.BASE_URL;

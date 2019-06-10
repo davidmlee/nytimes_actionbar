@@ -27,10 +27,8 @@ import android.widget.TextView;
 import com.davidmlee.nytimes100.R;
 import com.davidmlee.nytimes100.mvp_presenter.MainController;
 import com.davidmlee.nytimes100.mvp_presenter.ArticleDetailController;
-import com.davidmlee.nytimes100.mvp_presenter.MyApp;
 import com.davidmlee.nytimes100.mvp_model.ListSummaryEntity;
 import com.davidmlee.nytimes100.util.RoundedTransformation;
-import com.davidmlee.nytimes100.util.Util;
 
 import java.util.List;
 

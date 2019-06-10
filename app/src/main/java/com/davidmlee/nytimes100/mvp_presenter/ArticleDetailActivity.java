@@ -2,13 +2,11 @@ package com.davidmlee.nytimes100.mvp_presenter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +15,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.davidmlee.nytimes100.R;
-//import com.davidmlee.nytimes100.mvp_presenter.MyApp;
 import com.davidmlee.nytimes100.util.RoundedTransformation;
 import com.davidmlee.nytimes100.util.Util;
 import com.squareup.picasso.Picasso;
@@ -39,7 +36,11 @@ public class ArticleDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
-        getSupportActionBar().hide();
+        try {
+            getSupportActionBar().hide();
+        } catch (Exception ex) {
+            // just ignore
+        }
         imageView = (ImageView)findViewById(R.id.poster_image);
         Picasso.with(this)
                 .load(BASE_IMAGE_URL + ArticleDetailController.getDetailEntity().getPosterPath())
