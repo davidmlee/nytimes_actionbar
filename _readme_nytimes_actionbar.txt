@@ -21,5 +21,7 @@ https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=OKsEwghCzAPR3kR
 
 21 article - "white house break-in"
 https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=OKsEwghCzAPR3kRr7Hp51cFn2tMfXWgj&q=%E2%80%9Cwhite%20house%20break-in%E2%80%9D&sort=newest&page=0
+
+over 50 articles - Trump Mexico border wall
 -----------------------------------
 =======================================================================
