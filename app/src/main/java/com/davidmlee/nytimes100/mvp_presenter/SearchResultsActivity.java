@@ -77,6 +77,8 @@ public class SearchResultsActivity extends AppCompatActivity {
                 Toast.makeText(SearchResultsActivity.this, R.string.label_search_text_empty, Toast.LENGTH_LONG).show();
             } else {
                 clearArticleList();
+                articleListAdapter = new ArticleListAdapter(SearchResultsActivity.this, MainController.getArticleList());
+                recList.setAdapter(articleListAdapter);
                 MainController.searchArticles(query);
             }
 
